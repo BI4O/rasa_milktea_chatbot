@@ -1,0 +1,57 @@
+intents:
+- greet:
+    triggers: utter_greet
+- goodbye:
+    triggers: utter_goodbye
+- confirm
+- deny
+- order
+- thanks
+- inform_size
+- unknown_intent
+
+actions:
+- utter_greet
+- utter_ask_order_what
+- utter_ask_size
+- utter_affirm
+- utter_change_what
+- utter_goodbye
+- utter_charge
+- utter_default # action_default_fallback自动返回的就是这个动作，可以改写
+- action_charge
+
+entities:
+  - type
+  - size
+
+slots:
+  type:
+    type: text
+  size:
+    type: text
+
+templates:
+  utter_greet:
+  - text: "你好"
+
+  utter_ask_order_what:
+  - text: "想要喝点什么？"
+
+  utter_ask_size:
+  - text: "想要什么规格的呢？我们有中/大/特大杯"
+
+  utter_affirm:
+  - text: "确认下单这些对吗"
+
+  utter_change_what:
+  - text: "那么想要换点什么呢？"
+
+  utter_goodbye:
+  - text: "欢迎再次光临，再见~"
+
+  utter_default:
+  - text: "听不太懂你在说啥呢，我们重新来一遍"
+
+  utter_charge:
+  - text: "你好{type}一共20元"

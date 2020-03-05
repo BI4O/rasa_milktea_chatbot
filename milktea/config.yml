@@ -1,0 +1,51 @@
+language: "zh"
+
+#pipeline:
+#- name: "JiebaTokenizer"
+#- name: "CRFEntityExtractor"
+#
+#- name: "rasa_nlu_gao.extractors.jieba_pseg_extractor.JiebaPsegExtractor"
+#  part_of_speech: ["nr","ns","nt"]
+#
+#- name: "rasa_nlu_gao.featurizers.bert_vectors_featurizer.BertVectorsFeaturizer"
+#  ip: '127.0.0.1'
+#  port: 5555
+#  port_out: 5556
+#  show_server_config: True
+#  timeout: 10000
+#  check_version: False
+#- name: "rasa_nlu_gao.classifiers.embedding_bert_intent_classifier.EmbeddingBertIntentClassifier"
+
+pipeline:
+  - name: "JiebaTokenizer"
+  - name: "rasa_nlu_gao.featurizers.bert_vectors_featurizer.BertVectorsFeaturizer"
+    ip: '127.0.0.1'
+    port: 5555
+    port_out: 5556
+    show_server_config: True
+    timeout: 10000
+  - name: "rasa_nlu_gao.classifiers.embedding_bert_intent_classifier.EmbeddingBertIntentClassifier"
+  - name: "CRFEntityExtractor"
+
+policies:
+  - name: "policy.attention_policy.AttentionPolicy"
+    epochs: 100
+    featurizer:
+    - name: MaxHistoryTrackerFeaturizer
+      max_history: 3
+      state_featurizer:
+        - name: LabelTokenizerSingleStateFeaturizer
+    tf_config: {
+      "inter_op_parallelism_threads": 0,
+      "intra_op_parallelism_threads": 0,
+      "gpu_options": {"allow_growth": True}
+    }
+
+  - name: FallbackPolicy
+    fallback_action_name: 'action_default_fallback'
+    nlu_threshold: 0.5    # 所有intent都低于此值时候会触发
+    core_threshold: 0.2   # 无一action高于此值时候会触发
+  - name: MemoizationPolicy
+    max_history: 3
+
+  - name: MappingPolicy
