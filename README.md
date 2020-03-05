@@ -1,6 +1,7 @@
 ## Rasa Milk Tea Chatbot  (chinese)
 
-a milk tea watier chatbot for chinese, if you don't know rasa yet, refer to `mini rasa toturial` below or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
+a milk tea watier chatbot for chinese, if you don't know rasa yet, refer to `mini rasa toturial` below 
+or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
 
 - ### installation
 
