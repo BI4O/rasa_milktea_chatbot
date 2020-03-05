@@ -124,8 +124,9 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
      
   3. #### 定义模型配置
   
-     配置文件`config.yml`将定义前面的NLU模块和你的模型会用到的Core元素，本次使用的是来自大神写好的组件，这里也强烈推荐大家前往学习https://github.com/GaoQ1/rasa_nlu_gq，NLU的配置属于决定了使用的语言和管道，Core的policies的关键词决定了模型见会使用到的策略policies
-     note: 如果你只是想建立一个chatbot而不想了解太多关于算法的细节，config.yml可以不用改，直接用
+     1. 配置文件`config.yml`将定义前面的NLU模块和你的模型会用到的Core元素，本次使用的是来自大神写好的组件，这里也强烈推荐大家前往学习https://github.com/GaoQ1/rasa_nlu_gq
+     2. NLU的配置属于决定了使用的语言和管道，Core的policies的关键词决定了模型见会使用到的策略policies
+     3. note: 如果你只是想建立一个chatbot而不想了解太多关于算法的细节，config.yml可以不用改，直接用
 
   4. #### 自定义故事
   
@@ -188,7 +189,6 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
                   # 比如我想在对话中返回给用户的是HellowWorld!
                   dispatcher.utter_message('HelloWord!')
                   return []
-        ~~~
   
   5. #### 定义域domain
   
@@ -234,11 +234,10 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
      其中
   
        1. intents：用户意图
-  
-          	2. entities：实体
-        3. slots：槽
-       	4. actions：助手说和做的事情
-         5. templates：助手根据actions具体要做的事情
+       2. entities：实体
+       3. slots：槽
+       4. actions：助手说和做的事情
+       5. templates：助手根据actions具体要做的事情
 
        因为在这种情况下，我们的动作action只是向用户发送话语作为回复，这些简单的actions都是`utter_`开头的动作actions，这种动作需要助手在templates中选择语句进行回复，实际上还可以定义更多的动作见`Custom Actions`
 
