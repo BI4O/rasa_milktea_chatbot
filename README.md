@@ -147,52 +147,53 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
      ~~~
 
      **故事的组成**
-     
+  
      1. `##`开头表示的是这个**故事的名称**，一个描述性的名字
      2. 故事以换行结束，下一个故事`##`开头
      3. `*`开头的表示为**用户意图**
         `intent{"entity1": "value", "entity2": "value"}`
      4. `-`开头的表示为机器人执行的**动作**actions
         
-     
+  
      **用户信息**
-     
+  
      1. 在定义故事的时候，不需要知道用户具体说了什么，而是根据NLU pipeline中输出的意图intent和实体entity的组合来猜测用户的所有可能的需求
      2. 实体entity是很重要的，因为助手学习动作的时候，需要同时结合这两者
         
-     ##### 动作atcions
-     
-     1. actions有两种类型
+  
+     **动作acitons**
+  
+     ​	actions有两种类型
+  
+     1. utter_xxx 可以直接返回要回复的话术，只需要在domain.yml中说明就可以用了
+  
+     2. action_xxx 可以执行你想要的自定义操作，除了需要在domain.yml中说明外，还需要在aciton.py文件中添加。比如你想有一个自定义动作`action_HelloWorld`
+  
+        - 首先把这个自定义动作添加到domain.yml的acitons下
         
-        1. utter_xxx 可以直接返回要回复的话术，只需要在domain.yml中说明就可以用了
+          ~~~
+          actions:
+          - aciton_HelloWorld
+          ~~~
         
-        2. action_xxx 可以执行你想要的自定义操作，除了需要在domain.yml中说明外，还需要在aciton.py文件中添加。比如你想有一个自定义动作`action_HelloWorld`
+        - 然后在acitons.py文件中添加新的类
         
-           - 首先把这个自定义动作添加到domain.yml的acitons下
-           
-             ~~~
-             actions:
-             - aciton_HelloWorld
-             ~~~
-           
-           - 然后在acitons.py文件中添加新的类
-           
-             ~~~python
-             class YourCustomAction(Action):
-                 def name(self):
-                     # 这个返回的值必须和stories.md和domain.yml中说明的一致
-                     return "action_HelloWorld"
-                 def run(self,dispatcher,tracker,domain):
-                     # 定义这个动作要执行的你想要的操作
-                     # 比如我想在对话中返回给用户的是HellowWorld!
-                     dispatcher.utter_message('HelloWord!')
-                     return []
-             ~~~
-
-    5. #### 定义域domain
-
-       `cat domain.yml`
-
+          ~~~python
+          class YourCustomAction(Action):
+              def name(self):
+                  # 这个返回的值必须和stories.md和domain.yml中说明的一致
+                  return "action_HelloWorld"
+              def run(self,dispatcher,tracker,domain):
+                  # 定义这个动作要执行的你想要的操作
+                  # 比如我想在对话中返回给用户的是HellowWorld!
+                  dispatcher.utter_message('HelloWord!')
+                  return []
+        ~~~
+  
+  5. #### 定义域domain
+  
+     `cat domain.yml`
+  
        ~~~shell
        intents:  
          - greet:
@@ -205,12 +206,12 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
          - thanks
          - inform_size
          - unknown_intent
-     
+          
        actions: 
          - utter_greet
          - utter_ask_order_what
          - utter_ask_size
-     
+          
        entities:
          - type
          - size
@@ -220,7 +221,7 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
            type: text
          size:
            type: text
-     
+          
        templates:
          utter_greet:
            - text: "你好"
@@ -228,16 +229,15 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
            - text: "想要喝点什么？"
          utter_ask_size:
            - text: "想要什么规格的呢？我们有中/大/特大杯"
-       ~~~
-
-         其中
-
-       	1. intents：用户意图
-        	2. entities：实体
+     ~~~
   
+     其中
+  
+       1. intents：用户意图
+  
+          	2. entities：实体
         3. slots：槽
-        4. actions：助手说和做的事情
-
+       	4. actions：助手说和做的事情
          5. templates：助手根据actions具体要做的事情
 
        因为在这种情况下，我们的动作action只是向用户发送话语作为回复，这些简单的actions都是`utter_`开头的动作actions，这种动作需要助手在templates中选择语句进行回复，实际上还可以定义更多的动作见`Custom Actions`
