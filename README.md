@@ -8,8 +8,8 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
   you need to download bert_chinese_model first:  chinese_L-12_H-768_A-12
 
   ~~~shell
-  git clone https://github.com/BI4O/RASA.git
-  cd RASA
+  git clone https://github.com/BI4O/rasa_milktea_chatbot.git
+  cd rasa_milktea_chatbot
   pip install -r requirements.txt -i https://pypi.tuan.tsinghua.edu.cn/simple
   ~~~
 
