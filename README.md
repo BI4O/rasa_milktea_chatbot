@@ -1,11 +1,12 @@
 ## Rasa Milk Tea Chatbot  (chinese)
 
 a milk tea watier chatbot for chinese, if you don't know rasa yet, refer to `mini rasa toturial` below 
+
 or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
 
 - ### installation
 
-  you need to download bert_chinese_model first:  chinese_L-12_H-768_A-12
+  you need to **download** bert_chinese_model **and unzip it** first:  [chinese_L-12_H-768_A-12](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip)
 
   ~~~shell
   git clone https://github.com/BI4O/rasa_milktea_chatbot.git
