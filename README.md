@@ -188,7 +188,7 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
               def run(self,dispatcher,tracker,domain):
                   # 定义这个动作要执行的你想要的操作
                   # 比如我想在对话中返回给用户的是HellowWorld!
-                  dispatcher.utter_message('HelloWord!')
+                  dispatcher.utter_message('HelloWorld!')
                   return []
   
   5. #### 定义域domain
@@ -244,7 +244,7 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
 
     6. #### 训练模型
   
-     使用下面的命令，会自动检查domain/stories/NLU中的不同而重新对模型进行训练，训练好的模型将会被打伤时间戳time stamp作为新的模型
+     使用下面的命令，会自动检查domain/stories/NLU中的不同而重新对模型进行训练，训练好的模型将会被打上时间戳time stamp作为新的模型
          `rasa train`
   
     7. #### 启动助手进行对话
