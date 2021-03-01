@@ -76,7 +76,7 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
      | data/stories.md            | 我的自定义故事stories              |
      | domain.yml                 | 助手的定义域domian                 |
      | endpoints.yml              | 连接到fb message等的轨道（不常用） |
-     | models/\<timestame>.tar.gz | 模型及其参数文件                   |
+     | models/\<timestamp>.tar.gz | 模型及其参数文件                   |
 
   2. #### 自定义NLU训练数据
 
