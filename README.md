@@ -11,7 +11,7 @@ or read the [rasa offical docs](https://rasa.com/docs/rasa/1.1.8/)
   ~~~shell
   git clone https://github.com/BI4O/rasa_milktea_chatbot.git
   cd rasa_milktea_chatbot
-  pip install -r requirements.txt -i https://pypi.tuan.tsinghua.edu.cn/simple
+  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   ~~~
 
 - ### quick start
